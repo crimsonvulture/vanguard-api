@@ -97,8 +97,7 @@ def enroll_in_service():
 
 @app.route("/register_security_answer", methods=['POST'])
 def register_security_answer():
-    # auth user
-    request_data = request.get_json(force=True)
+    #request_data = request.get_json(force=True)
 
     try:
         user = auth()
@@ -106,10 +105,11 @@ def register_security_answer():
         return rAuthError
 
     try:
-        params = get_from_request_data(["service_info"])
+        params = get_from_request_data(["username","service_info"])
         service_info = params["service_info"]
     except MissingRequestParams:
-        return rMissingServiceInfo
+        #Missing username is handled by auth()
+		return rMissingServiceInfo
 
     service_name = service_info.get("service_name")
     question = service_info.get("question")
@@ -118,7 +118,7 @@ def register_security_answer():
         return rMissingParams(["service_name", "question", "answer"])
 
     try:
-        Users.register_security_answer(username, service_name, question, answer)
+        Users.register_security_answer(params["username"], service_name, question, answer)
     except RuntimeError as e:
         return rInternalServerError
 
