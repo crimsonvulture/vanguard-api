@@ -12,9 +12,10 @@ def get_from_request_data(desired_params):
     """
     Given a list of params, try and get them from the request
     """
+    request_data = request.get_json(force=True)
     params = dict()
     for p in desired_params:
-        p_value = request.form.get(p)
+        p_value = request_data[p]
         if p_value is None:
             raise MissingRequestParams
         params[p] = p_value
@@ -42,7 +43,7 @@ def register():
     try:
         params = get_from_request_data(["username", "password", "email"])
     except MissingRequestParams:
-        return rMissingParams(["username, password", "email"])
+        return rMissingParams(["username", "password", "email"])
 
     try:
         Users.register_user(params["username"],params["email"],params["password"])
