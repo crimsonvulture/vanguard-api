@@ -79,13 +79,13 @@ def enroll_in_service():
 
     service_info = request_data.get("service_info")
     if service_info is None:
-        return "Please provide service information for enrollment", 400
+        return "Please provide service information for enrollment\n", 400
 
     service_name = service_info.get("service_name")
     username = service_info.get("username")
     password = service_info.get("password")
     if None in [service_name, username, password]:
-        return "Please provide service information for enrollment", 400
+        return "Please provide service information for enrollment\n", 400
 
     try:
         Users.enroll_in_service(username, service_info)
@@ -93,7 +93,7 @@ def enroll_in_service():
         print "ERROR:", e
         return rInternalServerError
 
-    return "OK"
+    return "OK\n"
 
 @app.route("/register_security_answer", methods=['POST'])
 def register_security_answer():
@@ -122,7 +122,7 @@ def register_security_answer():
     except RuntimeError as e:
         return rInternalServerError
 
-    return "OK"
+    return "OK\n"
 
 # Vanguard Routes
 
