@@ -5,7 +5,7 @@ from selenium.common.exceptions import *
 
 class Browser(object):
     def __init__(self):
-        self.remote = "http://192.168.99.100:4444/wd/hub"
+        self.remote =  "http://selenium:4444/wd/hub"
         self.browser_type = DesiredCapabilities.CHROME
 
         self.browser = None
