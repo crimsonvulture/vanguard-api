@@ -109,7 +109,7 @@ def register_security_answer():
         service_info = params["service_info"]
     except MissingRequestParams:
         #Missing username is handled by auth()
-		return rMissingServiceInfo
+        return rMissingServiceInfo
 
     service_name = service_info.get("service_name")
     question = service_info.get("question")

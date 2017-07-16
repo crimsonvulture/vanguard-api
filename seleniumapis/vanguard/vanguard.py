@@ -47,7 +47,7 @@ class Vanguard(Base):
         # Get the question text
         question = table.find_elements_by_tag_name("td")[3].text
 
-        return question
+        return question.replace("'","")
 
     def answer_security_question(self, answer):
         # get the summary table
