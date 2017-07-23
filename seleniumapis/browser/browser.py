@@ -64,6 +64,12 @@ class Browser(object):
         except NoSuchElementException:
             return None
 
+    def find_elements_by_xpath(self, xpath):
+        try:
+            return self.driver.find_elements_by_xpath(xpath)
+        except NoSuchElementException:
+            return None
+
     def fill_form(self, form_id, form_info, submit_id=None):
         """
         Fill out a form on the currently visible page

@@ -176,13 +176,12 @@ def vanguard_current_holdings():
         v.answer_security_question(answer)
 
         current_holdings = v.get_current_holdings()
-        res = dict(current_holdings=current_holdings)
     finally:
         v.close_browser()
-        if res is None:
+        if len(current_holdings) == 0:
             return rInternalServerError
 
-    return jsonify(res)
+    return jsonify(current_holdings)
 
 @app.route("/vanguard/open_orders")
 def vanguard_open_orders():
